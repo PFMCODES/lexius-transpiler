@@ -1,36 +1,33 @@
-// js.js
-const babel = require("@babel/core");
-const vm = require("vm");
+// browserJS.js
+import * as Babel from "@babel/standalone"; // browser version of Babel
 
-async function run(code) {
+export async function run(code) {
   const logs = [];
 
-  const sandbox = {
-    console: {
-      log: (...args) => {
-        logs.push(args.map(String).join(" "));
-      }
+  // Safe console for the sandbox
+  const sandboxConsole = {
+    log: (...args) => {
+      logs.push(args.map(String).join(" "));
     }
   };
 
-  const context = vm.createContext(sandbox);
-
-  const transpiled = babel.transformSync(code, {
-    presets: ["@babel/preset-env"],
+  // Transpile using Babel (browser version)
+  const transpiled = Babel.transform(code, {
+    presets: ["env"]
   }).code;
 
   let result;
   try {
-    const script = new vm.Script(transpiled);
-    result = script.runInContext(context);
+    // Create a "sandboxed" function using Function constructor
+    // Expose only console
+    const func = new Function("console", `"use strict";\n${transpiled}`);
+    result = func(sandboxConsole);
   } catch (err) {
     throw err;
   }
 
   return {
-    result: result,
+    result,
     stdout: logs.join("\n")
   };
 }
-
-module.exports = { run };

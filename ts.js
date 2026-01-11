@@ -1,13 +1,13 @@
 // ts.js
-const ts = require("typescript");
-const js = require("./js.js")
+import ts from "typescript";
+import js from "./js.js";
 
 /**
  * Run TypeScript code by first transpiling to JS
  * @param {string} code - TypeScript code to run
  * @returns {any} - The result of executing the code
  */
-async function run(code) {
+export async function run(code) {
     try {
         // Transpile TypeScript to JavaScript
         const transpiled = ts.transpileModule(code, {
@@ -26,5 +26,3 @@ async function run(code) {
         throw new Error(`TS execution error: ${err.message}`);
     }
 }
-
-module.exports = { run };
