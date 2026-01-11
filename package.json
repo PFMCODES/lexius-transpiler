@@ -1,0 +1,40 @@
+{
+  "name": "@lexius/transpiler",
+  "version": "1.0.0",
+  "description": "a web-based transpiler for lexius",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "compile": ""
+  },
+  "keywords": [
+    "Safe",
+    "Isolated",
+    "Resource-limited",
+    "Language-agnostic",
+    "No-host-compromise",
+    "Resource-Limited",
+    "Language-Agnostic",
+    "No-Host-compromise",
+    "No-Host-Compromise",
+    "safe",
+    "isolated",
+    "resource-limited",
+    "Language-agnostic",
+    "no-host-compromise",
+    "SAFE",
+    "ISOLATED",
+    "RESOURCE-LIMITED",
+    "LANGUAGE-AGNOSTIC",
+    "NO-HOST-COMPROMISE"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "pyodide": "^0.29.1",
+    "typescript": "^5.9.3"
+  }
+}
