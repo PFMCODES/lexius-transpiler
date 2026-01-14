@@ -1,4 +1,4 @@
-import python from "./python.mjs";
+import python from "./python.js";
 import js from "./js.js";
 import ts from "./ts.js";
 

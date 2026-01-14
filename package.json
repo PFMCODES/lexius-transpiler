@@ -30,7 +30,7 @@
   ],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
