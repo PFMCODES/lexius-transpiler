@@ -1,6 +1,6 @@
 // js.js
-import babel from "@babel/core";
-import vm from "vm";
+import * as babel from "@babel/core";
+import * as vm from "vm";
 
 export default async function run(code) {
   const logs = [];
