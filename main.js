@@ -62,8 +62,13 @@ const server = http.createServer(async (req, res) => {
                 }));
 
             } catch (err) {
+                console.error("❌ /run error:", err); // <-- ADD THIS LINE
+
                 res.writeHead(500, headers);
-                res.end(JSON.stringify({ error: "Execution failed", details: err.message }));
+                res.end(JSON.stringify({
+                    error: "Execution failed",
+                    details: err.message
+                }));
             }
         });
 
