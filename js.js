@@ -1,5 +1,5 @@
 // browserJS.js
-import * as Babel from "@babel/standalone"; // browser version of Babel
+import * as Babel from "@babel/core"; // browser version of Babel
 
 export async function run(code) {
   const logs = [];
