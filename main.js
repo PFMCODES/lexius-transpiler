@@ -41,13 +41,13 @@ const server = http.createServer(async (req, res) => {
                 console.log(req.method, req.url);
                 switch (data.lang.toLowerCase()) {
                     case "python":
-                        result = await python.run(data.code);
+                        result = await python(data.code);
                         break;
                     case "javascript":
-                        result = await js.run(data.code);
+                        result = await js(data.code);
                         break;
                     case "typescript":
-                        result = await ts.run(data.code);
+                        result = await ts(data.code);
                         break;
                     default:
                         res.writeHead(400, headers);
