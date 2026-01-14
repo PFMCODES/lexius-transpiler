@@ -1,7 +1,7 @@
 // browserJS.js
 import * as Babel from "@babel/core"; // browser version of Babel
 
-export async function run(code) {
+export default async function run(code) {
   const logs = [];
 
   // Safe console for the sandbox
