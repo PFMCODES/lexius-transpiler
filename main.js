@@ -2,7 +2,6 @@ import python from "./python.mjs";
 import js from "./js.js";
 import ts from "./ts.js";
 
-<<<<<<< HEAD
 export const run = (code, lang) => {
     switch (lang) {
         case "javascript":
@@ -16,7 +15,6 @@ export const run = (code, lang) => {
             break;
     }
 }
-=======
 const server = http.createServer(async (req, res) => {
     const headers = {
         "Content-Type": "application/json",
@@ -93,4 +91,3 @@ server.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on http://localhost:${PORT}`);
   }
 });
->>>>>>> 7bb31f2 (v1.0.3)
