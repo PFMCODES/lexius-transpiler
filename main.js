@@ -3,6 +3,8 @@ import js from "./js.js";
 import ts from "./ts.js";
 import http from "http";
 
+const PORT = 3000;
+
 const server = http.createServer(async (req, res) => {
     const headers = {
         "Content-Type": "application/json",
