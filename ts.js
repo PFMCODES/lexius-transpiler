@@ -19,7 +19,7 @@ export default async function run(code) {
         }).outputText;
 
         // Execute the transpiled JS code
-        const result = await js.run(transpiled);
+        const result = await js(transpiled);
 
         return result;
     } catch (err) {
