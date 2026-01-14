@@ -11,7 +11,7 @@ async function initPyodide() {
   return pyodideReadyPromise;
 }
 
-async function run(code) {
+export default async function run(code) {
   const logs = [];
   const pyodide = await initPyodide();
 
@@ -31,5 +31,3 @@ async function run(code) {
     stdout: logs.join("\n")
   };
 }
-
-export { run };

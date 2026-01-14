@@ -7,7 +7,7 @@ import js from "./js.js";
  * @param {string} code - TypeScript code to run
  * @returns {any} - The result of executing the code
  */
-export async function run(code) {
+export default async function run(code) {
     try {
         // Transpile TypeScript to JavaScript
         const transpiled = ts.transpileModule(code, {
