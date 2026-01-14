@@ -38,7 +38,7 @@ const server = http.createServer(async (req, res) => {
                 }
 
                 let result;
-
+                console.log(req.method, req.url);
                 switch (data.lang.toLowerCase()) {
                     case "python":
                         result = await python.run(data.code);
