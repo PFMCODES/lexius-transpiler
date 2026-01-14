@@ -1,8 +1,8 @@
 // js.js
-const babel = require("@babel/core");
-const vm = require("vm");
+import babel from "@babel/core";
+import vm from "vm";
 
-async function run(code) {
+export default async function run(code) {
   const logs = [];
 
   const sandbox = {
@@ -32,5 +32,3 @@ async function run(code) {
     stdout: logs.join("\n")
   };
 }
-
-module.exports = { run };
