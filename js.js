@@ -24,7 +24,10 @@ export default async function run(code) {
     const script = new vm.Script(transpiled);
     result = script.runInContext(context);
   } catch (err) {
-    throw err;
+    return {
+      result: "",
+      stdout: "",
+      stderr: err
   }
 
   return {
