@@ -28,6 +28,7 @@ export default async function run(code) {
       result: "",
       stdout: "",
       stderr: err
+    }
   }
 
   return {
