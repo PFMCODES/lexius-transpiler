@@ -1,6 +1,7 @@
 // js.js
 import * as babel from "@babel/core";
-import * as vm from "vm";
+import vm from "vm";
+import { codeFrameColumns } from "@babel/code-frame";
 
 export default async function run(code) {
   const logs = [];
@@ -15,22 +16,62 @@ export default async function run(code) {
 
   const context = vm.createContext(sandbox);
 
-  const transpiled = babel.transformSync(code, {
-    presets: ["@babel/preset-env"],
-  }).code;
-
-  let result;
+  let transpiled;
   try {
-    const script = new vm.Script(transpiled);
-    result = script.runInContext(context);
+    transpiled = babel.transformSync(code, {
+      presets: ["@babel/preset-env"],
+    }).code;
   } catch (err) {
+    // Babel syntax error
+    const frame = err.loc
+      ? codeFrameColumns(
+          code,
+          { start: err.loc },
+          { highlightCode: true }
+        )
+      : null;
+
     return {
-      result: err
-    }
+      ok: false,
+      type: "compile",
+      message: err.message,
+      frame,
+      stdout: logs.join("\n"),
+    };
   }
 
-  return {
-    result: result,
-    stdout: logs.join("\n")
-  };
+  try {
+    const script = new vm.Script(transpiled, { filename: "user-code.js" });
+    const result = script.runInContext(context);
+
+    return {
+      ok: true,
+      result,
+      stdout: logs.join("\n"),
+    };
+  } catch (err) {
+    // Runtime error
+    const match = err.stack?.match(/user-code\.js:(\d+):(\d+)/);
+
+    const frame = match
+      ? codeFrameColumns(
+          code,
+          {
+            start: {
+              line: Number(match[1]),
+              column: Number(match[2]),
+            },
+          },
+          { highlightCode: true }
+        )
+      : null;
+
+    return {
+      ok: false,
+      type: "runtime",
+      message: err.message,
+      frame,
+      stdout: logs.join("\n"),
+    };
+  }
 }

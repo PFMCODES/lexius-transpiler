@@ -32,6 +32,7 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@babel/code-frame": "^7.28.6",
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
     "pyodide": "^0.29.1",
