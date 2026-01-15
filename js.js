@@ -68,8 +68,7 @@ export default async function run(code) {
     return {
       ok: false,
       type: "runtime",
-      message: err.message,
-      frame,
+      stderr: err.message,
       stdout: logs.join("\n"),
     };
   }
