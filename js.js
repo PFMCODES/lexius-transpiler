@@ -25,9 +25,7 @@ export default async function run(code) {
     result = script.runInContext(context);
   } catch (err) {
     return {
-      result: "",
-      stdout: "",
-      stderr: err
+      result: err
     }
   }
 
